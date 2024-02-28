@@ -37,17 +37,21 @@ const Login = () => {
   const navigate = useNavigate();
   const [name, setName] = useState<string>(null);
   const [username, setUsername] = useState<string>(null);
+  const [password, setPassword] = useState(null);
 
   const doLogin = async () => {
     try {
-      const requestBody = JSON.stringify({ username, name });
-      const response = await api.post("/users", requestBody);
+      const requestBody = JSON.stringify({ username, password });
+      console.log(requestBody);
+      const response = await api.post("/login", requestBody);
 
       // Get the returned user and update a new object.
       const user = new User(response.data);
+      console.log(response.data)
 
       // Store the token into the local storage.
       localStorage.setItem("token", user.token);
+      localStorage.setItem("id", user.id);
 
       // Login successfully worked --> navigate to the route /game in the GameRouter
       navigate("/game");
@@ -57,6 +61,26 @@ const Login = () => {
       );
     }
   };
+
+  const doRegister = async () => {
+    try {
+      const requestBody = JSON.stringify({ username, password });
+      console.log(requestBody);
+      const response = await api.post("/users", requestBody);
+
+      const user = new User(response.data);
+      console.log(response.data);
+
+      localStorage.setItem("token", user.token);
+      localStorage.setItem("id", user.id);
+
+      navigate("/game");
+    } catch (error) {
+      alert(
+        `Something went wrong during the login: \n${handleError(error)}`
+      );
+    }
+  }
 
   return (
     <BaseContainer>
@@ -68,17 +92,26 @@ const Login = () => {
             onChange={(un: string) => setUsername(un)}
           />
           <FormField
-            label="Name"
-            value={name}
-            onChange={(n) => setName(n)}
+            label="Password"
+            value={password}
+            onChange={(n) => setPassword(n)}
           />
           <div className="login button-container">
             <Button
-              disabled={!username || !name}
+              disabled={!username || !password}
               width="100%"
               onClick={() => doLogin()}
             >
               Login
+            </Button>
+          </div>
+          <div className="register button-container">
+            <Button
+              disabled={!username || !password}
+              width="100%"
+              onClick={() => doRegister()}
+            >
+              Register
             </Button>
           </div>
         </div>

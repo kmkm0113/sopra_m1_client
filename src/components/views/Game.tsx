@@ -31,8 +31,15 @@ const Game = () => {
   // more information can be found under https://react.dev/learn/state-a-components-memory and https://react.dev/reference/react/useState 
   const [users, setUsers] = useState<User[]>(null);
 
-  const logout = (): void => {
+  const logout = async ()=> {
+    try {
+      await api.put("/users/"+localStorage.getItem("id")+"/logout");
+    }
+    catch (error) {
+      alert(`Something went wrong during the logout: \n${handleError(error)}`);
+    }
     localStorage.removeItem("token");
+    localStorage.removeItem('id');
     navigate("/login");
   };
 
