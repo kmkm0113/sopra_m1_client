@@ -39,7 +39,7 @@ const Game = () => {
       alert(`Something went wrong during the logout: \n${handleError(error)}`);
     }
     localStorage.removeItem("token");
-    localStorage.removeItem('id');
+    localStorage.removeItem("id");
     navigate("/login");
   };
 
