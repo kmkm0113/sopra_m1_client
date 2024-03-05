@@ -11,7 +11,8 @@ import PropTypes from "prop-types";
  * @Guard
  * @param props
  */
-export const GameGuard = () => {
+export const EditGuard = () => {
+
   if (localStorage.getItem("token")) {
     return <Outlet />;
   }

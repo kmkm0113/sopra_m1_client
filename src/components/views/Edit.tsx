@@ -22,7 +22,7 @@ Player.propTypes = {
   user: PropTypes.object,
 };
 
-const Game = () => {
+const Edit = () => {
   // use react-router-dom's hook to access navigation, more info: https://reactrouter.com/en/main/hooks/use-navigate 
   const navigate = useNavigate();
 
@@ -74,7 +74,9 @@ const Game = () => {
         console.log(response);
       } catch (error) {
         console.error(
-          `Something went wrong while fetching the users: \n${handleError(error)}`
+          `Something went wrong while fetching the users: \n${handleError(
+            error
+          )}`
         );
         console.error("Details:", error);
         alert(
@@ -107,7 +109,7 @@ const Game = () => {
 
   return (
     <BaseContainer className="game container">
-      <h2>This is the list of all users!</h2>
+      <h2>Sample Edit Page!</h2>
       <p className="game paragraph">
         Click a username to move to its profile page:
       </p>
@@ -116,4 +118,4 @@ const Game = () => {
   );
 };
 
-export default Game;
+export default Edit;

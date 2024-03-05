@@ -90,12 +90,12 @@ const Login = () => {
           <FormField
             label="Username"
             value={username}
-            onChange={(un: string) => setUsername(un)}
+            onChange={(newUsername: string) => setUsername(newUsername)}
           />
           <FormField
             label="Password"
             value={password}
-            onChange={(n) => setPassword(n)}
+            onChange={(newBirthday) => setPassword(newBirthday)}
           />
           <div className="login button-container">
             <Button
