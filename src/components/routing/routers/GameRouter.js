@@ -1,21 +1,24 @@
 import React from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
 import Game from "../../views/Game";
+import Profile from "../../views/Profile";
 import PropTypes from "prop-types";
 
 const GameRouter = () => {
+  console.log("GameRouter is rendered");
+
   return (
     <div style={{display: "flex", flexDirection: "column"}}>
       <Routes>
 
         <Route path="" element={<Game />} />
-
         <Route path="dashboard" element={<Game />} />
+
+        <Route path="profile/:userid" element={<Profile />} />
 
         <Route path="*" element={<Navigate to="dashboard" replace />} />
 
       </Routes>
-   
     </div>
   );
 };

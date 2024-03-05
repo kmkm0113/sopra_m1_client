@@ -35,14 +35,12 @@ FormField.propTypes = {
 
 const Login = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState<string>(null);
   const [username, setUsername] = useState<string>(null);
   const [password, setPassword] = useState(null);
 
   const doLogin = async () => {
     try {
       const requestBody = JSON.stringify({ username, password });
-      console.log(requestBody);
       const response = await api.post("/login", requestBody);
 
       // Get the returned user and update a new object.
@@ -68,12 +66,15 @@ const Login = () => {
       console.log(requestBody);
       const response = await api.post("/users", requestBody);
 
+      // Get the returned user and update a new object.
       const user = new User(response.data);
       console.log(response.data);
 
+      // Store the token into the local storage.
       localStorage.setItem("token", user.token);
       localStorage.setItem("id", user.id);
 
+      // Register successfully worked --> navigate to the route /game in the GameRouter
       navigate("/game");
     } catch (error) {
       alert(
