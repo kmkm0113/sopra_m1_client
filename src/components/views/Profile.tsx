@@ -52,6 +52,7 @@ const Profile = () => {
 
       if (birthday !== null && !dateFormat.test(birthday)) {
         alert("Birthday must be in yyyy-mm-dd format!");
+        
         return;
       }
 
