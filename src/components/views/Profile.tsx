@@ -45,6 +45,16 @@ const Profile = () => {
   const updateProfile = async () => {
     try {
       const token = localStorage.getItem("token");
+
+      // check birthday format
+      const dateFormat = /^\d{4}-\d{2}-\d{2}$/;
+      console.log(birthday);
+
+      if (birthday !== null && !dateFormat.test(birthday)) {
+        alert("Birthday must be in yyyy-mm-dd format!");
+        return;
+      }
+
       const requestBody = JSON.stringify({ id, username, birthday, token});
       await api.put("/users/" + id, requestBody);
       await new Promise((resolve) => setTimeout(resolve, 1000));
