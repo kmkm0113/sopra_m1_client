@@ -8,5 +8,6 @@ export const getBrokerURL = () => {
 
   // return brokerURL for WebSocket
   // if local environment, returns "ws://localhost:8080/ws"
-  return `${wsScheme}://${host}/${wsScheme}`;
+  // if app engine, returns "wss://xxxxxx/ws"
+  return `${wsScheme}://${host}/ws`;
 }
