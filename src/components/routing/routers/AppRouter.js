@@ -4,6 +4,7 @@ import {GameGuard} from "../routeProtectors/GameGuard";
 import GameRouter from "./GameRouter";
 import {LoginGuard} from "../routeProtectors/LoginGuard";
 import Login from "../../views/Login";
+import Chat from "../../views/Chat";
 
 /**
  * Main router of your application.
@@ -18,6 +19,8 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
+
+        <Route path="/chat" element={<Chat/>} />
 
         <Route path="/game/*" element={<GameGuard />}>
           <Route path="*" element={<GameRouter base="/game"/>} />
