@@ -59,6 +59,7 @@ const Chat = () => {
       stompClient.deactivate();
     };
     window.addEventListener("beforeunload", handleBeforeUnload);
+
     return () => {
       stompClient.deactivate();
       window.removeEventListener("beforeunload", handleBeforeUnload);
