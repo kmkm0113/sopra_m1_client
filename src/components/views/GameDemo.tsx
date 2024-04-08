@@ -92,10 +92,10 @@ const GameDemo = () => {
         });
 
         // subscribe result
-        // message has role<String>, winners<List<Long>>, losers<List<Long>>
+        // message has winnerRole<String>, winners<List<Long>>, losers<List<Long>>
         stompClient.subscribe(`/topic/${lobbyId}/result`, (message) => {
           const event = JSON.parse(message.body);
-          const newLog = `Winner role: ${event.role}. Winner players: ${event.winners}. Loser players: ${event.losers}`;
+          const newLog = `Winner role: ${event.winnerRole}. Winner players: ${event.winners}. Loser players: ${event.losers}`;
           setGameLog((prevGameLog) => [...prevGameLog, newLog]);
         });
 
